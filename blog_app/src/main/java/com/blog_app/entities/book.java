@@ -1,10 +1,15 @@
 package com.blog_app.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-
+@Entity
 public class book {
-
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String name;
     private String author;
@@ -12,11 +17,7 @@ public class book {
     public book() {
     }
 
-    public book(int id, String name, String author) {
-        this.id = id;
-        this.name = name;
-        this.author = author;
-    }
+   
 
     public int getId() {
         return this.id;

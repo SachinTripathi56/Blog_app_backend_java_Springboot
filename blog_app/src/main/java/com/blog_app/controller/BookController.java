@@ -49,16 +49,14 @@ public class BookController {
 
    @PostMapping("/books")
    public ResponseEntity<book> postMethodName(@RequestBody book book) {
-      
+      book b =null;
      try {    
-     this.bookservice.addbook(book);
+        b = this.bookservice.addbook(book);
 
-     return ResponseEntity.status(HttpStatus.CREATED).body(book);
+     return ResponseEntity.status(HttpStatus.CREATED).body(b);
      }  
 
-     catch(Exception e){
-      
-      
+     catch(Exception e){ 
       e.printStackTrace();
 
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
