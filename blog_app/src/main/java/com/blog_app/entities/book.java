@@ -1,9 +1,13 @@
 package com.blog_app.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class book {
@@ -12,15 +16,24 @@ public class book {
     private Integer id;
 
     private String name;
-    private String author;
+
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    @JsonManagedReference
+    private Author author;
 
     public book() {
     }
-
-   
+   public book(Integer id, String name, Author author) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+    }
 
     public int getId() {
         return this.id;
+
+ 
     }
 
     public void setId(int id) {
@@ -35,22 +48,13 @@ public class book {
         this.name = name;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return this.author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", author='" + getAuthor() + "'" +
-            "}";
-    }
 
 }
